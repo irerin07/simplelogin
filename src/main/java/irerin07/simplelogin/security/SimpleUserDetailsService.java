@@ -23,6 +23,9 @@ public class SimpleUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 //        User user = userRepository.findById()
         User user = userRepository.getUserByEmail(s);
+        if(user == null){
+            throw new UsernameNotFoundException("유저를 찾을 수 없습니다.");
+        }
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         SimpleUser simpleUser = new SimpleUser(user.getUsername(), user.getPasswd(), authorities);

@@ -27,7 +27,7 @@ public class SimpleUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("유저를 찾을 수 없습니다.");
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         SimpleUser simpleUser = new SimpleUser(user.getUsername(), user.getPasswd(), authorities);
         simpleUser.setId(user.getId());
         simpleUser.setEmail(user.getEmail());
